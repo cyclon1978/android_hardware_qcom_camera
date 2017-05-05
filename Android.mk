@@ -1,4 +1,5 @@
-ifeq ($(call my-dir),$(call project-path-for,qcom-camera))
+# hack: for some reason the path ist the device path... 
+## ifeq ($(call my-dir),$(call project-path-for,qcom-camera))
 
 ifneq ($(strip $(USE_DEVICE_SPECIFIC_CAMERA)),true)
 # TODO:  Find a better way to separate build configs for ADP vs non-ADP devices
@@ -11,9 +12,12 @@ ifneq ($(TARGET_BOARD_AUTO),true)
       ifneq ($(filter msm8998,$(TARGET_BOARD_PLATFORM)),)
         include $(call all-makefiles-under,$(call my-dir)/msm8998)
       endif
+      ifneq ($(filter msm8952,$(TARGET_BOARD_PLATFORM)),)
+        include $(call all-makefiles-under,$(call my-dir)/msm8952)
+      endif
     endif
   endif
 endif
 endif
 
-endif
+## endif
